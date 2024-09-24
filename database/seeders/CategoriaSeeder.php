@@ -4,6 +4,8 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
 
 class CategoriaSeeder extends Seeder
 {
@@ -12,15 +14,20 @@ class CategoriaSeeder extends Seeder
      */
     public function run(): void
     {
-        
             DB::table('categorias')->insert([
-                'hoteis' => 'joao alg',
+                'nome' => 'seila poura',
+                'hoteis' => 'cucucucu',
+                'apartamentos' => ' aurul',
             ]);
             DB::table('categorias')->insert([
-                'hoteis' => 'seila poura',
+                'nome' => 'sei',
+                'hoteis' => ' alg',
+                'apartamentos' => 'cudequema',
             ]);
             DB::table('categorias')->insert([
-                'hoteis' => 'cudequem ta lendo',
+                'nome' => 'seuscu',
+                'hoteis' => ' algum la',
+                'apartamentos' => 'cudeapido',
             ]);
       
     }
