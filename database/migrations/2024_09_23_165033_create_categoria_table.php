@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('categorias', function (Blueprint $table) {
             $table->id();
-            $table->string('nome',length: 100);
-            $table->string('hoteis',length: 100);
-            $table->string('apartamentos',length: 100);
+            $table->string('localizacao',length: 100);
+            $table->string('hotel',length: 100);
+            $table->string('quartos',length: 100);
             $table->timestamps();
         });
     }
-    
+
 
     /**
      * Reverse the migrations.

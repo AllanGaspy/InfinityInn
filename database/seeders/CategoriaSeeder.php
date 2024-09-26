@@ -15,21 +15,21 @@ class CategoriaSeeder extends Seeder
     public function run(): void
     {
             DB::table('categorias')->insert([
-                'nome' => 'seila poura',
-                'hoteis' => 'cucucucu',
-                'apartamentos' => ' aurul',
+                'localizacao' => 'Rio de Janeiro',
+                'hotel' => 'Plaza Barra',
+                'quartos' => '43',
             ]);
             DB::table('categorias')->insert([
-                'nome' => 'sei',
-                'hoteis' => ' alg',
-                'apartamentos' => 'cudequema',
+                'localizacao' => 'Buzios',
+                'hotel' => 'Porto Mar de Búzios',
+                'quartos' => '18',
             ]);
             DB::table('categorias')->insert([
-                'nome' => 'seuscu',
-                'hoteis' => ' algum la',
-                'apartamentos' => 'cudeapido',
+                'localizacao' => 'Recife',
+                'hotel' => 'Silverton Paiva ExperienceAbre numa nova janela',
+                'quartos' => '34',
             ]);
-      
+
     }
     }
 

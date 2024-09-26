@@ -33,11 +33,20 @@ class CategoriaController extends Controller
     public function store(Request $request)
     {
         $validated = $request -> validate([
-            'nome' => 'required|min:5',
+            'hotel' => 'required|min:5',
 
             //dd($request -> all());
         ]);
-           
+
+        $categoria = new Categoria();
+        $categoria->localizacao = $request->localizacao;
+        $categoria->hotel = $request->hotel;
+        $categoria->quartos = $request->quartos;
+        $categoria->save();
+
+
+        return redirect()->route('categoria.index')->with('mensagem', 'Categoria cadastrada com sucesso');
+
     }
 
     /**
