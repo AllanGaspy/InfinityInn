@@ -9,6 +9,12 @@
                 <a href=" {{ url('/categoria/create') }} " class="btn btn-success" role="button"
                     aria-pressed="true">CRIAR</a>
             </div>
+                    <!--Alert do create Sucess  -->
+                    @if (session('mensagem'))
+                <div class="alert alert-success">
+                        {{ session ('mensagem') }}
+                </div>
+                @endif
 
             <table class="table my-5">
                 <thead>

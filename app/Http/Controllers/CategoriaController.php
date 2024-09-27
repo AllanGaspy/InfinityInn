@@ -13,9 +13,10 @@ class CategoriaController extends Controller
      */
     public function index()
     {
+        //index do categoria (view)
        $categorias = Categoria::all();
        return view('categoria.categoria_index', compact('categorias'));
-      // dd ();
+      
     }
 
     /**
@@ -23,19 +24,22 @@ class CategoriaController extends Controller
      */
     public function create()
     {
+        //view do create
         return view('categoria.categoria_create');
-        //dd('funfou');
+        
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
+    {   
+        //Função Create, com fim retornando a view categoria index
         $validated = $request -> validate([
             'hotel' => 'required|min:5',
+            'localizacao' => 'required|min:5',
+            'quartos' => 'required|min:1',
 
-            //dd($request -> all());
         ]);
 
         $categoria = new Categoria();
@@ -53,10 +57,11 @@ class CategoriaController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {
-       // $categorias = Categoria::find($id);
-       // return view('categoria.categoria_show', compact('categorias'));
-        //dd('show' . $id);
+    {  
+         //Retorna a visuzalição (view) do elemento rote show
+       $categorias = Categoria::find($id);
+       return view('categoria.categoria_show', compact('categorias'));
+        
     }
 
     /**
@@ -64,7 +69,8 @@ class CategoriaController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $categorias = Categoria::find($id);
+        return view('categoria.categoria_edit', compact('categorias'));
     }
 
     /**
@@ -72,7 +78,21 @@ class CategoriaController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $validated = $request -> validate([
+            'hotel' => 'required|min:5',
+            'localizacao' => 'required|min:5',
+            'quartos' => 'required|min:1'
+
+        ]);
+
+        $categoria = Categoria::find($id);
+        $categoria->localizacao = $request->localizacao;
+        $categoria->hotel = $request->hotel;
+        $categoria->quartos = $request->quartos;
+        $categoria->save();
+
+        return redirect()->route('categoria.index')->with('mensagem', 'Categoria cadastrada com sucesso');
+
     }
 
     /**
@@ -80,6 +100,9 @@ class CategoriaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $categorias = Categoria::find($id);
+        $categorias -> delete();
+
+        return redirect() -> route('categoria.index') -> with('mensagem', 'Categoria deletada com sucesso !');
     }
 }
