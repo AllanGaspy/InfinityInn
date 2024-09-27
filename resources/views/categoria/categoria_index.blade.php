@@ -19,7 +19,8 @@
             <table class="table my-5">
                 <thead>
                     <tr>
-                        <th>Localização</th>
+                        <th>Id</th>
+                        <th>localização</th>
                         <th>Hotel</th>
                         <th>Quantidade de quartos</th>
                         <th class="text-center">Ações</th>
