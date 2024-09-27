@@ -4,20 +4,31 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+        <!-- pré-vizualização para editar-->
+         <br>
+         <p>Dados desse Registro</p>
+        <ul class="list-group">
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Indentificador ;
+                <span class="badge badge-primary badge-pill"><p>{{$categorias->id}}</p></span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Localização ;
+                <span class="badge badge-primary badge-pill">{{$categorias->localizacao}}</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Número de quartos ; 
+                <span class="badge badge-primary badge-pill">{{$categorias->quartos}}</span>
+            </li>
+            </ul>        
+            <br>
+            <p>Ensira os novos Dados</p>
 
-            <!--Forms do create-->
-            <form method = 'POST' action="{{ URl('/categoria') }}">
+            <!--Forms do EDIT-->
+            <form method = 'POST' action="{{ URl('/categoria/' . $categorias->id) }}">
+                @method('PUT')
                 @csrf
-            <!--Alert para requisição não cumprida da categoriaController-->
-                @if ($errors->any())
-                <div class="alert alert-danger">
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
+
                 <div class="form-group">
                     <label for="exampleInputEmail1">Localização</label>
                     <input type="text" name="localizacao" class="form-control"  placeholder="Digite a localização">

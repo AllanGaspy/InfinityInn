@@ -4,41 +4,53 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <table>
-                        <tr>
-                         <th>id </th>
-                         <th>Nome </th>
-                         <th>hoteis </th>
-                         <th>apartamentos </th>
-                         <th>Ação </th>
-                        </tr>
-                    @foreach($categorias as $value)    
-                        <tr>
-                        <td>{{$value -> id}}</td>
-                        <td>{{$value -> nome}}</td>
-                        <td>{{$value -> hoteis}}</td>
-                        <td>{{$value -> apartamentos}}</td>
-                        <!-- show edit e delete -->
-                        <td>
-                            <a href="{{ url('/categoria/' . $value->id)}}"><button type="button" class="btn btn-primary">Visualizar</button></a> 
-                            <a href=""><button type="button" class="btn btn-primary">Editar</button></a>
-                            <a href=""><button type="button" class="btn btn-primary">Ecluir</button></a>
-                        </td>
-                        </tr>
-                    @endforeach 
-                        <tr>
-                        <!-- Criação button --> 
-                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                            <a href="{{ url ('/categoria/create')}}"><button type="button" class="btn btn-success">Criar</button></a>
-                            
-                    </div>
-                        </tr>   
-                    </table>
-                </div>
+            <div class="mx-auto">
+                <a href=" {{ url('/categoria/create') }} " class="btn btn-success" role="button"
+                    aria-pressed="true">CRIAR</a>
             </div>
+                    <!--Alert do create Sucess  -->
+                    @if (session('mensagem'))
+                <div class="alert alert-success">
+                        {{ session ('mensagem') }}
+                </div>
+                @endif
+
+            <table class="table my-5">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>localização</th>
+                        <th>Hotel</th>
+                        <th>Quantidade de quartos</th>
+                        <th class="text-center">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($categorias as $value)
+                        <tr>
+                            <th scope="row">{{ $value->id }}</th>
+                            <td>{{$value->localizacao}}</td>
+                            <td>{{$value->hotel}}</td>
+                            <td>{{$value->quartos}}</td>
+                            <td class="d-flex justify-content-around">
+                                <a class="btn btn-primary" href="{{ url('/categoria/' . $value->id) }}"
+                                    role="button">Visualizar</a>
+                                <a class="btn btn-warning" href="{{ url('/categoria/' . $value->id . '/edit') }}"
+                                    role="button">Editar</a>
+                                <form method="POST" action='{{ url('/categoria/' . $value->id) }}'
+                                    onsubmit="return ConfirmDelete()">
+                                    @method('DELETE')
+                                    @csrf
+                                    <input class="btn btn-danger" role="button" value="Excluir"
+                                        type="submit"></input>
+                                </form>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+
         </div>
     </div>
 </div>
