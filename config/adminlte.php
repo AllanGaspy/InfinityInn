@@ -329,8 +329,13 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Categoria',
-            'url' => 'categoria',
+            'text' => 'Hoteis',
+            'url' => 'hoteis',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
+            'text' => 'Estados e Municipios',
+            'url' => 'localizacao', 
             'icon' => 'fas fa-fw fa-user',
         ],
         [

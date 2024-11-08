@@ -7,25 +7,28 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
 
-class CategoriaSeeder extends Seeder
+class HotelSeeder extends Seeder
 {
     /**
      * Run the database seeds.
      */
     public function run(): void
     {
-            DB::table('categorias')->insert([
-                'localizacao' => 'Rio de Janeiro',
+            DB::table('hoteis')->insert([
+                'estado' => 'Rio de Janeiro',
+                'municipio' => 'Rio de Janeiro',
                 'hotel' => 'Plaza Barra',
                 'quartos' => '43',
             ]);
-            DB::table('categorias')->insert([
-                'localizacao' => 'Buzios',
+            DB::table('hoteis')->insert([
+                'estado' => 'Rio de Janeiro',
+                'municipio' => 'búzios',
                 'hotel' => 'Porto Mar de Búzios',
                 'quartos' => '18',
             ]);
-            DB::table('categorias')->insert([
-                'localizacao' => 'Recife',
+            DB::table('hoteis')->insert([
+                'estado' => 'Pernambuco',
+                'municipio' => 'Recife',
                 'hotel' => 'Silverton Paiva ExperienceAbre numa nova janela',
                 'quartos' => '34',
             ]);

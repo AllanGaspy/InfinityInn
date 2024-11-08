@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('hoteis', function (Blueprint $table) {
             $table->id();
-            $table->string('localizacao',length: 100);
+            $table->string('estado',length: 100);
+            $table->string('municipio',length: 100);
             $table->string('hotel',length: 100);
             $table->string('quartos',length: 100);
             $table->timestamps();
@@ -26,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('hoteis');
     }
 };

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CategoriaController;
+use App\Http\Controllers\HoteisController;
 
 
 Route::get('/', function () {
@@ -13,17 +13,17 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-//---------Categorias-----------
-Route::get('/categoria', [App\Http\Controllers\CategoriaController::class, 'index'])->name('categoria.index');
+//--------- Lista Hoteis-----------
+Route::get('/hoteis', [App\Http\Controllers\HoteisController::class, 'index'])->name('hoteis.index');
 
-Route::get('/categoria/create', [App\Http\Controllers\CategoriaController::class, 'create'])->name('categoria.create');
+Route::get('/hoteis/create', [App\Http\Controllers\HoteisController::class, 'create'])->name('hoteis.create');
 
-Route::post('/categoria', [App\Http\Controllers\CategoriaController::class, 'store'])->name('categoria.store');
+Route::post('/hoteis', [App\Http\Controllers\HoteisController::class, 'store'])->name('hoteis.store');
 
-Route::get('/categoria/{id}', [App\Http\Controllers\CategoriaController::class, 'show'])->name('categoria.show');
+Route::get('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'show'])->name('hoteis.show');
 
-Route::get('/categoria/{id}/edit',[App\Http\Controllers\CategoriaController::class, 'edit'])->name('categoria.edit');
+Route::get('/hoteis/{id}/edit',[App\Http\Controllers\HoteisController::class, 'edit'])->name('hoteis.edit');
 
-Route::put('/categoria/{id}', [App\Http\Controllers\CategoriaController::class, 'update'])->name('categoria.update');
+Route::put('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'update'])->name('hoteis.update');
 
-Route::delete('/categoria/{id}', [App\Http\Controllers\CategoriaController::class, 'destroy'])->name('categoria.destroy');
+Route::delete('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'destroy'])->name('hoteis.destroy');
