@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HoteisController;
+use App\Http\Controllers\EstadosController  ;
 
 
 Route::get('/', function () {
@@ -27,3 +28,17 @@ Route::get('/hoteis/{id}/edit',[App\Http\Controllers\HoteisController::class, 'e
 Route::put('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'update'])->name('hoteis.update');
 
 Route::delete('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'destroy'])->name('hoteis.destroy');
+
+
+//--------- Estados-----------
+Route::get('/estados', [App\Http\Controllers\EstadosController::class, 'index'])->name('estados.index');
+
+Route::post('/estados', [App\Http\Controllers\EstadosController::class, 'store'])->name('estados.store');
+
+Route::get('/estados/{id}', [App\Http\Controllers\EstadosController::class, 'show'])->name('estados.show');
+
+Route::get('/estados/{id}/edit',[App\Http\Controllers\EstadosController::class, 'edit'])->name('estados.edit');
+
+Route::put('/estados/{id}', [App\Http\Controllers\EstadosController::class, 'update'])->name('estados.update');
+
+Route::delete('/estados/{id}', [App\Http\Controllers\EstadosController::class, 'destroy'])->name('estados.destroy');
