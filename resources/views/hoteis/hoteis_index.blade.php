@@ -31,10 +31,10 @@
         @foreach ($hoteis as $value)
             <tr>
                 <th scope="row">{{ $value->id }}</th>
-                <td>{{$value->estado}}</td>
-                <td>{{$value->municipio}}</td>
-                <td>{{$value->hotel}}</td>
-                <td>{{$value->quartos}}</td>
+                <td>{{ $value->estado->nome }}</td>
+                <td>{{ $value->cidade->nome }}</td>
+                <td>{{ $value->hotel }}</td>
+                <td>{{ $value->quartos }}</td>
                 <td class="d-flex justify-content-around">
                     <a class="btn btn-primary" href="{{ url('/hoteis/' . $value->id) }}"
                         role="button">Visualizar</a>

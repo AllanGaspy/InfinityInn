@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Hotel;
+use App\Models\Estado;
+use App\Models\Cidade;
+
+
 
 class HoteisController extends Controller
 {
@@ -25,7 +29,10 @@ class HoteisController extends Controller
     public function create()
     {
         //view do create
-        return view('hoteis.hoteis_create');
+        $estados = Estado::all();
+        $cidades = Cidade::all();
+
+        return view('hoteis.hoteis_create', compact('estados', 'cidades'));
         
     }
 
@@ -37,15 +44,15 @@ class HoteisController extends Controller
         //Função Create, com fim retornando a view categoria index
         $validated = $request -> validate([
             'hotel' => 'required|min:5',
-            'estado' => 'required|min:5',
-            'municipio' => 'required|min:5',
+            'estado_id' => 'required',
+            'cidade_id' => 'required',
             'quartos' => 'required|min:1',
 
         ]);
 
         $hoteis = new Hotel();
-        $hoteis->estado = $request->estado;
-        $hoteis->municipio = $request->municipio;
+        $hoteis->estado_id = $request->estado_id;
+        $hoteis->cidade_id = $request->cidade_id;
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
         $hoteis->save();

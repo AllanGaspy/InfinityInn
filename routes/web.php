@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HoteisController;
-use App\Http\Controllers\EstadosController  ;
-
+use App\Http\Controllers\EstadosController;
+use App\Http\Controllers\LocationController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -28,6 +28,8 @@ Route::get('/hoteis/{id}/edit',[App\Http\Controllers\HoteisController::class, 'e
 Route::put('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'update'])->name('hoteis.update');
 
 Route::delete('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'destroy'])->name('hoteis.destroy');
+
+Route::get('/localidades/cidades/{estadoId}', [App\Http\Controllers\LocationController::class, 'getCidades'])->name('localidades.cidades'); // Rota para buscar as cidades
 
 
 //--------- Estados-----------

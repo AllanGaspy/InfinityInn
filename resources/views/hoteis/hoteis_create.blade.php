@@ -6,6 +6,7 @@
 <head>
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   </head>
 
 <div class="container">
@@ -25,15 +26,23 @@
                     </ul>
                 </div>
             @endif
-            @foreach ($estados as $value)
+            
                 <div class="form-group">
                     <label for="exampleInputEmail1">Estado</label>
-                    <select class="selectpicker" data-show-subtext="true" data-live-search="true">
-                    <option value="{{ $value->id }}">{{ $value->estados->nome - $value->nome }}</option>
+
+                    <!-- Parte na qual estava dando erro no select = class="selectpicker" data-show-subtext="true" data-live-search="true" -->
+
+                    <select id="estado" name='estado_id'>
+                    <option value="">Selecione um Estado</option>
+                        @foreach ($estados as $value)
+                            <option value="{{ $value->id }}">{{ $value->nome }}</option>
+                        @endforeach
                     </select>
 
-                    <label for="exampleInputEmail1">Municipio</label>
-                    <select class="selectpicker" data-show-subtext="true" data-live-search="true"></select>
+                    <label for="cidade">Cidade:</label>
+                    <select id="cidade" name="cidade_id">
+                        <option value="">Selecione uma Cidade</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
@@ -48,7 +57,38 @@
 
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
-            @endforeach
+
+            <script>
+        // Evento de mudança no select de Estado
+        $('#estado').on('change', function() {
+            var estadoId = $(this).val(); // Pega o valor do estado selecionado
+
+            // Limpa o select de cidade
+            $('#cidade').html('<option value="">Selecione uma Cidade</option>');
+
+            // Se um estado foi selecionado, realiza a requisição AJAX
+            if (estadoId) {
+                $.ajax({
+                    url: '{{ url('localidades/cidades') }}/' + estadoId, // URL para obter as cidades
+                    type: 'GET',
+                    success: function(data) {
+                        // Preenche o select de cidades com as cidades retornadas
+                        if (data.length > 0) {
+                            data.forEach(function(cidade) {
+                                $('#cidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                            });
+                        } else {
+                            $('#cidade').html('<option value="">Nenhuma cidade encontrada</option>');
+                        }
+                    },
+                    error: function() {
+                        alert('Erro ao carregar as cidades.');
+                    }
+                });
+            }
+        });
+    </script>
+
         </div>
     </div>
 </div>

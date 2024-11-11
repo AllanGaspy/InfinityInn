@@ -16,20 +16,20 @@ class HotelSeeder extends Seeder
     public function run(): void
     {
             DB::table('hoteis')->insert([
-                'estado' => 'Rio de Janeiro',
-                'municipio' => 'Rio de Janeiro',
+                'estado_id' => 19,
+                'cidade_id' => 3591,
                 'hotel' => 'Plaza Barra',
                 'quartos' => '43',
             ]);
             DB::table('hoteis')->insert([
-                'estado' => 'Rio de Janeiro',
-                'municipio' => 'búzios',
+                'estado_id' => 19,
+                'cidade_id' => 3592,
                 'hotel' => 'Porto Mar de Búzios',
                 'quartos' => '18',
             ]);
             DB::table('hoteis')->insert([
-                'estado' => 'Pernambuco',
-                'municipio' => 'Recife',
+                'estado_id' => 19,
+                'cidade_id' => 3593,
                 'hotel' => 'Silverton Paiva ExperienceAbre numa nova janela',
                 'quartos' => '34',
             ]);
