@@ -1,54 +1,122 @@
+
+
 @extends('adminlte::page')
 
 @section('content')
+
+<head>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-        <!-- pré-vizualização para editar-->
-         <br>
-         <p>Dados desse Registro</p>
-        <ul class="list-group">
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Indentificador ;
-                <span class="badge badge-primary badge-pill"><p>{{$hoteis->id}}</p></span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Localização ;
-                <span class="badge badge-primary badge-pill">{{$hoteis->localizacao}}</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                Número de quartos ; 
-                <span class="badge badge-primary badge-pill">{{$hoteis->quartos}}</span>
-            </li>
-            </ul>        
-            <br>
-            <p>Ensira os novos Dados</p>
+<div class="row justify-content-center">
+    <div class="col-md-8">
 
-            <!--Forms do EDIT-->
-            <form method = 'POST' action="{{ URl('/hoteis/' . $hoteis->id) }}">
-                @method('PUT')
-                @csrf
+        <!--Forms do create-->
+        <form method = 'POST' action="{{ URl('/hoteis/' .$hotel->id) }}">
+        @method('PUT')    
+        @csrf
+            
+        <!--Alert para requisição não cumprida da categoriaController-->
+            @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        
+            <div class="form-group">
+                <label for="exampleInputEmail1">Estado</label>
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Localização</label>
-                    <input type="text" name="localizacao" class="form-control"  placeholder="Digite a localização">
-                </div>
+                <!-- Parte na qual estava dando erro no select = class="selectpicker" data-show-subtext="true" data-live-search="true" -->
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Hotel</label>
-                    <input type="text" name="hotel" class="form-control"  placeholder="Digite o nome do hotel">
-                </div>
+                <select id="estado" name='estado_id'>
+                    @foreach($estados as $value)
 
-                <div class="form-group">
-                    <label for="exampleInputEmail1">Quantidade de quartos</label>
-                    <input type="int" name="quartos" class="form-control"  placeholder="Digite a quantidade de quartos">
-                </div>
+                        @if($value->id == $hotel->estado_id)
+                            <option selected='selected' value="{{ $value->id }}">{{ $value->nome }}</option>
+                        @else
+                            <option value="{{ $value->id }}">{{ $value->nome }}</option>
+                        @endif
 
-                <button type="submit" class="btn btn-primary">Enviar</button>
+                    @endforeach
+                </select>
 
-            </form>
+                <label for="exampleInputEmail1">Cidade</label>
+                <select id="cidade" name='cidade_id'>
+                    @foreach($cidades as $value)
 
-        </div>
+                        @if($value->id == $hotel->cidade_id)
+                            <option selected='selected' value="{{ $value->id }}">{{ $value->nome }}</option>
+                        @else
+                            <option value="{{ $value->id }}">{{ $value->nome }}</option>
+                        @endif
+
+                    @endforeach
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Hotel</label>
+
+                    <input type="text" name="hotel" id="hotel" class="form-control"  placeholder="Digite o nome do hotel" value="{{ $hotel->hotel }}" > 
+                
+            </div>
+
+            <div class="form-group">
+                <label for="exampleInputEmail1">Quantidade de quartos</label>
+                <input type="int" name="quartos" class="form-control"  placeholder="Digite a quantidade de quartos" value="{{ $hotel->quartos }}">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Editar</button>
+        </form>
+
+        <script>
+    // Evento de mudança no select de Estado
+    $('#estado').on('change', function() {
+        var estadoId = $(this).val(); // Pega o valor do estado selecionado
+
+        // Limpa o select de cidade
+        $('#cidade').html('<option value="">Selecione uma Cidade</option>');
+
+        // Se um estado foi selecionado, realiza a requisição AJAX
+        if (estadoId) {
+            $.ajax({
+                url: '{{ url('localidades/cidades') }}/' + estadoId, // URL para obter as cidades
+                type: 'GET',
+                success: function(data) {
+                    // Preenche o select de cidades com as cidades retornadas
+                    if (data.length > 0) {
+                        data.forEach(function(cidade) {
+                            $('#cidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                        });
+                    } else {
+                        $('#cidade').html('<option value="">Nenhuma cidade encontrada</option>');
+                    }
+                },
+                error: function() {
+                    alert('Erro ao carregar as cidades.');
+                }
+            });
+        }
+    });
+</script>
+
     </div>
 </div>
+</div>
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+
 @endsection

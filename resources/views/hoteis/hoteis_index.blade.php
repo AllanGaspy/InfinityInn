@@ -40,7 +40,7 @@
                         role="button">Visualizar</a>
                     <a class="btn btn-warning" href="{{ url('/hoteis/' . $value->id . '/edit') }}"
                         role="button">Editar</a>
-                    <form method="POST" action='{{ url('/hoteis/' . $value->id) }}'
+                    <form method="POST" action="{{ url('/hoteis/' . $value->id) }}"
                         onsubmit="return ConfirmDelete()">
                         @method('DELETE')
                         @csrf

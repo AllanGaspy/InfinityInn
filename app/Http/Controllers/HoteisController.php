@@ -78,8 +78,11 @@ class HoteisController extends Controller
      */
     public function edit(string $id)
     {
-        $hoteis = Hotel::find($id);
-        return view('hoteis.hoteis_edit', compact('hoteis'));
+        $estados = Estado::all();
+        $cidades = Cidade::all();
+        $hotel = Hotel::find($id);
+
+        return view('hoteis.hoteis_edit', compact('estados', 'cidades' , 'hotel'));
     }
 
     /**
@@ -87,22 +90,25 @@ class HoteisController extends Controller
      */
     public function update(Request $request, string $id)
     {
+
         $validated = $request -> validate([
             'hotel' => 'required|min:5',
-            'estado' => 'required|min:5',
-            'municipio' => 'required|min:5',
+            'estado_id' => 'required',
+            'cidade_id' => 'required',
             'quartos' => 'required|min:1',
 
         ]);
 
-        $hoteis = new Hotel();
-        $hoteis->estado = $request->estado;
-        $hoteis->municipio = $request->municipio;
+        $hoteis =  Hotel::find($id);
+        $hoteis->estado_id = $request->estado_id;
+        $hoteis->cidade_id = $request->cidade_id;
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
         $hoteis->save();
 
-        return redirect()->route('hoteis.index')->with('mensagem', 'Categoria cadastrada com sucesso');
+
+        return redirect()->route('hoteis.index')->with('mensagem', 'Hotel editado com sucesso');
+
 
     }
 

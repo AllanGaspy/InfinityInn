@@ -32,15 +32,3 @@ Route::delete('/hoteis/{id}', [App\Http\Controllers\HoteisController::class, 'de
 Route::get('/localidades/cidades/{estadoId}', [App\Http\Controllers\LocationController::class, 'getCidades'])->name('localidades.cidades'); // Rota para buscar as cidades
 
 
-//--------- Estados-----------
-Route::get('/estados', [App\Http\Controllers\EstadosController::class, 'index'])->name('estados.index');
-
-Route::post('/estados', [App\Http\Controllers\EstadosController::class, 'store'])->name('estados.store');
-
-Route::get('/estados/{id}', [App\Http\Controllers\EstadosController::class, 'show'])->name('estados.show');
-
-Route::get('/estados/{id}/edit',[App\Http\Controllers\EstadosController::class, 'edit'])->name('estados.edit');
-
-Route::put('/estados/{id}', [App\Http\Controllers\EstadosController::class, 'update'])->name('estados.update');
-
-Route::delete('/estados/{id}', [App\Http\Controllers\EstadosController::class, 'destroy'])->name('estados.destroy');
