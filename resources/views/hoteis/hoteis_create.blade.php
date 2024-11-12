@@ -14,7 +14,7 @@
         <div class="col-md-8">
 
             <!--Forms do create-->
-            <form method = 'POST' action="{{ URl('/hoteis') }}">
+            <form method = 'POST' action="{{ URl('/hoteis') }}"  enctype="multipart/form-data">
                 @csrf
             <!--Alert para requisição não cumprida da categoriaController-->
                 @if ($errors->any())
@@ -55,6 +55,9 @@
                     <input type="int" name="quartos" class="form-control"  placeholder="Digite a quantidade de quartos">
                 </div>
 
+                <label for="image" class="form-label">Insira a imagem:</label>
+                <br><input type="file" name="images[]" multiple><br>
+
                 <button type="submit" class="btn btn-primary">Enviar</button>
             </form>
 
@@ -94,7 +97,10 @@
 </div>
 
 
-  
+
+
+
+
 
     
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

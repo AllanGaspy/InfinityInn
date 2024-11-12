@@ -31,7 +31,6 @@ class HoteisController extends Controller
         //view do create
         $estados = Estado::all();
         $cidades = Cidade::all();
-
         return view('hoteis.hoteis_create', compact('estados', 'cidades'));
         
     }
@@ -56,6 +55,26 @@ class HoteisController extends Controller
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
         $hoteis->save();
+
+        $hoteis = new Hotel();
+        
+        $hoteis = $request->hoteis;
+        //transformando as tags em array e json
+        $jsonTags = [];
+        foreach($hoteis as $hoteis){
+            $jsonTags[] = $hoteis;
+        }
+        $hoteis->hotel = $jsonTags;
+        
+        //tranformando as imagens em base64
+        $totalImages = count($request->images);
+        $jsonImages = []; 
+        for($i = 0; $i < $totalImages; $i++){
+            $content = $request->file("images");
+            $image = file_get_contents($content[$i]);
+            $image64 = base64_encode($image);
+            $jsonImages[] = $image64;
+        }
 
 
         return redirect()->route('hoteis.index')->with('mensagem', 'Hotel    cadastrada com sucesso');

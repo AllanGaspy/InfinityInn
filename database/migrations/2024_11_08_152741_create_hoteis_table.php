@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('estado_id');
             $table->integer('cidade_id');
-            $table->string('hotel',length: 100);
-            $table->string('quartos',length: 100);
+            $table->string('hotel');
+            $table->integer('quartos');
             $table->timestamps();
         });
     }
