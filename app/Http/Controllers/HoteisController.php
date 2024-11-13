@@ -54,18 +54,7 @@ class HoteisController extends Controller
         $hoteis->cidade_id = $request->cidade_id;
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
-        $hoteis->save();
-
-        $hoteis = new Hotel();
-        
-        $hoteis = $request->hoteis;
-        //transformando as tags em array e json
-        $jsonTags = [];
-        foreach($hoteis as $hoteis){
-            $jsonTags[] = $hoteis;
-        }
-        $hoteis->hotel = $jsonTags;
-        
+       
         //tranformando as imagens em base64
         $totalImages = count($request->images);
         $jsonImages = []; 
@@ -76,6 +65,8 @@ class HoteisController extends Controller
             $jsonImages[] = $image64;
         }
 
+        $hoteis->images = $jsonImages; 
+        $hoteis->save();
 
         return redirect()->route('hoteis.index')->with('mensagem', 'Hotel    cadastrada com sucesso');
 

@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
     {
         $this->call([
             UserSeeder::class,
-            HotelSeeder::class,
+            //-- esta cometado por causa do up img ------- HotelSeeder::class,
             EstadoSeeder::class,
            
             ]);

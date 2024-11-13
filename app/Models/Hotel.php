@@ -12,6 +12,11 @@ class Hotel extends Model
 
     protected $table = "hoteis";
 
+    protected $casts = [
+        'images' => 'json'
+    ];
+
+
     public function cidade(): HasOne
     {
         return $this->hasOne(Cidade::class,'id' ,'cidade_id' );
@@ -21,5 +26,7 @@ class Hotel extends Model
     {
         return $this->hasOne(Estado::class, 'id', 'estado_id');
     }
+
+    
 }
  
