@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('cidade_id');
             $table->string('hotel');
             $table->integer('quartos');
-            $table->json('images');
+            $table->json('images')->nullable();
             $table->timestamps();
         });
     }
