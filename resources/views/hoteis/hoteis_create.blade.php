@@ -52,7 +52,7 @@
 
                 <div class="form-group">
                     <label for="exampleInputEmail1">Quantidade de quartos</label>
-                    <input type="int" name="quartos" class="form-control"  placeholder="Digite a quantidade de quartos">
+                    <input type="number" name="quartos" class="form-control"  placeholder="Digite a quantidade de quartos">
                 </div>
 
                 <label for="image" class="form-label">Insira a imagem:</label>

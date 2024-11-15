@@ -17,6 +17,12 @@
         <span class="badge badge-primary badge-pill">{{$hoteis->quartos}}</span>
     </li>
     </ul>
+
+        @foreach($hoteis->images as $value)
+        <img src="data:image/png;base64,{{ $value }}" alt="" />
+        @endforeach
+        
+
 @endsection
 
 

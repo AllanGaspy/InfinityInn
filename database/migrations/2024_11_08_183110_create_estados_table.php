@@ -11,7 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-    
+        Schema::create('hoteis', function (Blueprint $table) {
+            $table->id();
+            $table->integer('estado_id');
+            $table->integer('cidade_id');
+            $table->string('hotel');
+            $table->integer('quartos');
+            $table->json('images')->nullable();
+            $table->timestamps();
+        });
     }
 
     /**

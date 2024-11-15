@@ -80,6 +80,8 @@ class HoteisController extends Controller
          //Retorna a visuzalição (view) do elemento rote show
        $hoteis = Hotel::find($id);
        return view('hoteis.hoteis_show', compact('hoteis'));
+
+       
         
     }
 

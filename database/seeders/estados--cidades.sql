@@ -2,6 +2,8 @@
 --
 -- Estrutura da tabela "estado"
 --
+--possivel forma de converter
+--https://youtu.be/MdwvjgNJshk
 
 CREATE TABLE `estado` (
   `id` int(11) NOT NULL,
