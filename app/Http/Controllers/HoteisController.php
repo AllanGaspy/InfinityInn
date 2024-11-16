@@ -20,7 +20,7 @@ class HoteisController extends Controller
         //dd('');
       $hoteis = Hotel::all();
       return view('hoteis.hoteis_index', compact('hoteis'));
-      
+
     }
 
     /**
@@ -32,14 +32,14 @@ class HoteisController extends Controller
         $estados = Estado::all();
         $cidades = Cidade::all();
         return view('hoteis.hoteis_create', compact('estados', 'cidades'));
-        
+
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {   
+    {
         //Função Create, com fim retornando a view categoria index
         $validated = $request -> validate([
             'hotel' => 'required|min:5',
@@ -54,10 +54,10 @@ class HoteisController extends Controller
         $hoteis->cidade_id = $request->cidade_id;
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
-       
+
         //tranformando as imagens em base64
         $totalImages = count($request->images);
-        $jsonImages = []; 
+        $jsonImages = [];
         for($i = 0; $i < $totalImages; $i++){
             $content = $request->file("images");
             $image = file_get_contents($content[$i]);
@@ -65,10 +65,10 @@ class HoteisController extends Controller
             $jsonImages[] = $image64;
         }
 
-        $hoteis->images = $jsonImages; 
+        $hoteis->images = $jsonImages;
         $hoteis->save();
 
-        return redirect()->route('hoteis.index')->with('mensagem', 'Hotel    cadastrada com sucesso');
+        return redirect()->route('hoteis.index')->with('mensagem', 'Hotel  cadastrado com sucesso');
 
     }
 
@@ -76,13 +76,13 @@ class HoteisController extends Controller
      * Display the specified resource.
      */
     public function show(string $id)
-    {  
+    {
          //Retorna a visuzalição (view) do elemento rote show
        $hoteis = Hotel::find($id);
        return view('hoteis.hoteis_show', compact('hoteis'));
 
-       
-        
+
+
     }
 
     /**
@@ -103,19 +103,58 @@ class HoteisController extends Controller
     public function update(Request $request, string $id)
     {
 
-        $validated = $request -> validate([
+        // $validated = $request -> validate([
+        //     'hotel' => 'required|min:5',
+        //     'estado_id' => 'required',
+        //     'cidade_id' => 'required',
+        //     'quartos' => 'required|min:1',
+
+        // ]);
+
+        // $hoteis =  Hotel::find($id);
+        // $hoteis->estado_id = $request->estado_id;
+        // $hoteis->cidade_id = $request->cidade_id;
+        // $hoteis->hotel = $request->hotel;
+        // $hoteis->quartos = $request->quartos;
+        // $hoteis->save();
+
+        // dd($request->images);
+        $validated = $request->validate([
             'hotel' => 'required|min:5',
             'estado_id' => 'required',
             'cidade_id' => 'required',
             'quartos' => 'required|min:1',
-
         ]);
 
-        $hoteis =  Hotel::find($id);
+        $hoteis = Hotel::find($id);
         $hoteis->estado_id = $request->estado_id;
         $hoteis->cidade_id = $request->cidade_id;
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
+
+        // Obter imagens existentes (se houver)
+        $currentImages = $hoteis->images ?? [];
+
+        // Remover imagens marcadas
+        if ($request->has('remove_images')) {
+            foreach ($request->input('remove_images') as $index) {
+                unset($currentImages[$index]);
+            }
+        }
+
+        // Transformar novas imagens em base64 e adicionar ao array existente
+        if ($request->hasFile('images')) {
+            $newImages = [];
+            foreach ($request->file('images') as $file) {
+                $image = file_get_contents($file->getRealPath());
+                $image64 = base64_encode($image);
+                $newImages[] = $image64;
+            }
+            $currentImages = array_merge($currentImages, $newImages);
+        }
+
+        // Atualizar o campo images com as alterações
+        $hoteis->images = array_values($currentImages); // Reorganizar índices do array
         $hoteis->save();
 
 

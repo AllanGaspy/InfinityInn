@@ -1,27 +1,46 @@
 @extends('adminlte::page')
 
-@section('content') 
+@section('content')
 <!--Gostei dessa lista, pensei em por um forms  em baixo dela para efetuar a reserva-->
     <ul class="list-group">
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Indentificador ;
-        <span class="badge badge-primary badge-pill"><p>{{ $hoteis->id }}</p></span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Localização 
-        <span class="badge badge-primary badge-pill">{{ $hoteis->estado->nome }}</span>
-        <span class="badge badge-primary badge-pill">{{ $hoteis->cidade->nome }}</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center">
-        Número de quartos ; 
-        <span class="badge badge-primary badge-pill">{{$hoteis->quartos}}</span>
-    </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Hotel:
+            <span class=""><p>{{ $hoteis->id }}</p></span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Estado:
+            <span class="">{{ $hoteis->estado->nome }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Cidade:
+            <span class="">{{ $hoteis->cidade->nome }}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Número de quartos:
+            <span class="">{{$hoteis->quartos}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Valor da diária:
+            <span class=""></span>
+        </li>
     </ul>
 
-        @foreach($hoteis->images as $value)
-        <img src="data:image/png;base64,{{ $value }}" alt="" />
+    <div class="row row-cols-1 row-cols-md-3 g-3">
+        @foreach ($hoteis->images as $value)
+            <div class="col">
+                <div class="card">
+                    <img
+                        src="data:image/png;base64,{{ $value }}"
+                        class="card-img-top img-fluid"
+                        alt="Hotel Image"
+                        style="width: 100%; height: 200px; object-fit: cover;"
+                    />
+                </div>
+            </div>
         @endforeach
-        
+    </div>
+
+
 
 @endsection
 
