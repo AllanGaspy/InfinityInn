@@ -16,8 +16,13 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             HotelSeeder::class,
-            EstadoSeeder::class,
+           // EstadoSeeder::class,
+            ReservaSeeder::class,
            
             ]);
+            
+           // $path = database_path('seeders/infinitinn.sql');
+           // DB::unprepared(file_get_contents($path));
+           // $this->comand->info('banco de dados importados com sucesso');
     }
 }   

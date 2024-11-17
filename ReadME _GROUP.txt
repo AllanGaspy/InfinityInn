@@ -11,11 +11,11 @@ DIA --27/09 --DOUGLAS-- Crud finalizado, criar, visualizar, editar e deletar fei
 
 CHECK LIST -----------
 
-EDITAR FOTOS - EDIT
+EDITAR FOTOS - EDIT --- OK
 
-GRID PARAS AS IMAGENS NO SHOW 
+GRID PARAS AS IMAGENS NO SHOW --- OK 
 
-SISTEMA DE RESERVA 
+SISTEMA DE RESERVA -- falta relacionamento com o user
 
 SISTEMA COMENTÁRIO 
 
