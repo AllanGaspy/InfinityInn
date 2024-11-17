@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\HoteisController;
 use App\Http\Controllers\EstadosController;
 use App\Http\Controllers\LocationController;
+use App\Http\Controllers\ReservaController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -30,6 +31,22 @@ Route::put('/hoteis/{id}', [HoteisController::class, 'update'])->name('hoteis.up
 
 Route::delete('/hoteis/{id}', [HoteisController::class, 'destroy'])->name('hoteis.destroy');
 
-Route::get('/localidades/cidades/{estadoId}', [LocationController::class, 'getCidades'])->name('localidades.cidades'); // Rota para buscar as cidades
+
+ // Rota para buscar as cidades
+Route::get('/localidades/cidades/{estadoId}', [LocationController::class, 'getCidades'])->name('localidades.cidades');
 
 
+//--------- Reservas-----------
+Route::get('/reservas', [ReservaController::class, 'index'])->name('reservas.index');
+
+Route::get('/reservas/create', [ReservaController::class, 'create'])->name('reservas.create');
+
+Route::post('/reservas', [ReservaController::class, 'store'])->name('reservas.store');
+
+Route::get('/reservas/{id}', [ReservaController::class, 'show'])->name('reservas.show');
+
+Route::get('/reservas/{id}/edit',[ReservaController::class, 'edit'])->name('reservas.edit');
+
+Route::put('/reservas/{id}', [ReservaController::class, 'update'])->name('reservas.update');
+
+Route::delete('/reservas/{id}', [ReservaController::class, 'destroy'])->name('reservas.destroy');

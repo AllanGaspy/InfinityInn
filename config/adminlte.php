@@ -334,8 +334,8 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
-            'text' => 'Estados e Municipios',
-            'url' => 'localizacao', 
+            'text' => 'Reservas',
+            'url' => 'reservas', 
             'icon' => 'fas fa-fw fa-user',
         ],
         [
