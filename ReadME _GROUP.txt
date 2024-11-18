@@ -16,10 +16,13 @@ EDITAR FOTOS - EDIT --- OK
 
 GRID PARAS AS IMAGENS NO SHOW --- OK 
 
-SISTEMA DE RESERVA -- falta relacionamento com o user
+SISTEMA DE RESERVA -- falta relacionamento com o user ------ !!!!Fazer mensagem de erro pra quando não upar imagens!!!!
+
+postagem dos hoteis ? --- ok pronta pra ser usada
+
 
 SISTEMA COMENTÁRIO
-
+ 
 SISTEMA DE AVALIAÇÃO
 
 FILTRO
