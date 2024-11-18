@@ -334,6 +334,11 @@ return [
             'icon' => 'fas fa-fw fa-user',
         ],
         [
+            'text' => 'Postagem',
+            'url' => 'postagem',
+            'icon' => 'fas fa-fw fa-user',
+        ],
+        [
             'text' => 'Reservas',
             'url' => 'reservas', 
             'icon' => 'fas fa-fw fa-user',

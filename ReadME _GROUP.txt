@@ -13,9 +13,11 @@ CHECK LIST -----------
 
 EDITAR FOTOS - EDIT --- OK
 
-GRID PARAS AS IMAGENS NO SHOW --- OK 
+GRID PARAS AS IMAGENS NO SHOW --- OK ------ !!!!Fazer mensagem de erro pra quando não upar imagens!!!!
 
 SISTEMA DE RESERVA -- falta relacionamento com o user
+
+postagem dos hoteis ? --- ok pronta pra ser usada
 
 SISTEMA COMENTÁRIO 
 

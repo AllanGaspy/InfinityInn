@@ -7,10 +7,11 @@ use Illuminate\Http\Request;
 use App\Models\Hotel;
 use App\Models\Estado;
 use App\Models\Cidade;
+use App\Models\Postagem;
 
 
 
-class HoteisController extends Controller
+class PostagemController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +19,8 @@ class HoteisController extends Controller
     public function index()
     {
         //dd('');
-      $hoteis = Hotel::all();
-      return view('hoteis.hoteis_index', compact('hoteis'));
+      $postagens = Postagem::all();
+      return view('postagem.postagem_index', compact('postagens'));
 
     }
 
@@ -29,9 +30,10 @@ class HoteisController extends Controller
     public function create()
     {
         //view do create
+        $postagens = Postagem::all();
         $estados = Estado::all();
         $cidades = Cidade::all();
-        return view('hoteis.hoteis_create', compact('estados', 'cidades'));
+        return view('postagem.postagem_create', compact('estados', 'cidades','postagens'));
 
     }
 
@@ -49,11 +51,11 @@ class HoteisController extends Controller
 
         ]);
 
-        $hoteis = new Hotel();
-        $hoteis->estado_id = $request->estado_id;
-        $hoteis->cidade_id = $request->cidade_id;
-        $hoteis->hotel = $request->hotel;
-        $hoteis->quartos = $request->quartos;
+        $postagens = new Postagem();
+        $postagens->estado_id = $request->estado_id;
+        $postagens->cidade_id = $request->cidade_id;
+        $postagens->hotel = $request->hotel;
+        $postagens->quartos = $request->quartos;
 
         //tranformando as imagens em base64
         $totalImages = count($request->images);
@@ -65,10 +67,10 @@ class HoteisController extends Controller
             $jsonImages[] = $image64;
         }
 
-        $hoteis->images = $jsonImages;
-        $hoteis->save();
+        $postagens->images = $jsonImages;
+        $postagens->save();
 
-        return redirect()->route('hoteis.index')->with('mensagem', 'Hotel  cadastrado com sucesso');
+        return redirect()->route('postagem.index')->with('mensagem', 'Postagem feita com sucesso');
 
     }
 
@@ -78,8 +80,8 @@ class HoteisController extends Controller
     public function show(string $id)
     {
          //Retorna a visuzalição (view) do elemento rote show
-       $hoteis = Hotel::find($id);
-       return view('hoteis.hoteis_show', compact('hoteis'));
+       $postagens = Postagem::find($id);
+       return view('postagem.postagem_show', compact('postagens'));
 
 
 
@@ -92,9 +94,10 @@ class HoteisController extends Controller
     {
         $estados = Estado::all();
         $cidades = Cidade::all();
+        $postagens = Postagem::find($id);
         $hotel = Hotel::find($id);
 
-        return view('hoteis.hoteis_edit', compact('estados', 'cidades' , 'hotel'));
+        return view('postagem.postagem_edit', compact('estados', 'cidades' , 'hotel','postagens'));
     }
 
     /**
@@ -103,21 +106,22 @@ class HoteisController extends Controller
     public function update(Request $request, string $id)
     {
 
-            $validated = $request->validate([
+       
+        $validated = $request->validate([
             'hotel' => 'required|min:5',
             'estado_id' => 'required',
             'cidade_id' => 'required',
             'quartos' => 'required|min:1',
         ]);
 
-        $hoteis = Hotel::find($id);
-        $hoteis->estado_id = $request->estado_id;
-        $hoteis->cidade_id = $request->cidade_id;
-        $hoteis->hotel = $request->hotel;
-        $hoteis->quartos = $request->quartos;
+        $postagens = Postagem::find($id);
+        $postagens->estado_id = $request->estado_id;
+        $postagens->cidade_id = $request->cidade_id;
+        $postagens->hotel = $request->hotel;
+        $postagens->quartos = $request->quartos;
 
         // Obter imagens existentes (se houver)
-        $currentImages = $hoteis->images ?? [];
+        $currentImages = $postagens->images ?? [];
 
         // Remover imagens marcadas
         if ($request->has('remove_images')) {
@@ -138,11 +142,11 @@ class HoteisController extends Controller
         }
 
         // Atualizar o campo images com as alterações
-        $hoteis->images = array_values($currentImages); // Reorganizar índices do array
-        $hoteis->save();
+        $postagens->images = array_values($currentImages); // Reorganizar índices do array
+        $postagens->save();
 
 
-        return redirect()->route('hoteis.index')->with('mensagem', 'Hotel editado com sucesso');
+        return redirect()->route('postagem.index')->with('mensagem', 'Postagen editado com sucesso');
 
 
     }
@@ -152,9 +156,9 @@ class HoteisController extends Controller
      */
     public function destroy(string $id)
     {
-        $hoteis = hotel::find($id);
-        $hoteis -> delete();
+        $postagens = Postagem::find($id);
+        $postagens -> delete();
 
-        return redirect() -> route('hoteis.index') -> with('mensagem', 'Categoria deletada com sucesso !');
+        return redirect() -> route('postagem.index') -> with('mensagem', 'Postagem deletada com sucesso !');
     }
 }
