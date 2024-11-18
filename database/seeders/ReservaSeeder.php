@@ -16,7 +16,7 @@ class ReservaSeeder extends Seeder
         DB::table('reservas')->insert([
             'nome'=>'douglas gomes',
             'estado_id' => 19,
-            'cidade_id' => 3591,
+            'cidade_id' => 91,
             'hotel' => 'Plaza Barra',
             'quartos' => 43,
             //adicionar cpf rg ?

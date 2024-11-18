@@ -11,23 +11,22 @@ DIA --27/09 --DOUGLAS-- Crud finalizado, criar, visualizar, editar e deletar fei
 
 CHECK LIST -----------
 
+=======
 EDITAR FOTOS - EDIT --- OK
 
-GRID PARAS AS IMAGENS NO SHOW --- OK ------ !!!!Fazer mensagem de erro pra quando não upar imagens!!!!
+GRID PARAS AS IMAGENS NO SHOW --- OK 
 
 SISTEMA DE RESERVA -- falta relacionamento com o user
 
-postagem dos hoteis ? --- ok pronta pra ser usada
-
-SISTEMA COMENTÁRIO 
+SISTEMA COMENTÁRIO
 
 SISTEMA DE AVALIAÇÃO
 
-FILTRO 
+FILTRO
 
 CATEGORIAS
 
-FAIXAS DE PREÇOS 
+FAIXAS DE PREÇOS
 
 
-TEMPLATE -- CSS 
+TEMPLATE -- CSS

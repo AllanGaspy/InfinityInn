@@ -17,19 +17,19 @@ class HotelSeeder extends Seeder
     {
             DB::table('hoteis')->insert([
                 'estado_id' => 19,
-                'cidade_id' => 3591,
+                'cidade_id' => 91,
                 'hotel' => 'Plaza Barra',
                 'quartos' => 43,
             ]);
             DB::table('hoteis')->insert([
                 'estado_id' => 19,
-                'cidade_id' => 3592,
+                'cidade_id' => 92,
                 'hotel' => 'Porto Mar de Búzios',
                 'quartos' => 18,
             ]);
             DB::table('hoteis')->insert([
                 'estado_id' => 19,
-                'cidade_id' => 3593,
+                'cidade_id' => 93,
                 'hotel' => 'Silverton Paiva ExperienceAbre numa nova janela',
                 'quartos' => 34,
             ]);
