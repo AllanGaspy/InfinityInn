@@ -17,10 +17,11 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             HotelSeeder::class,
             ReservaSeeder::class,
-            ReservaSeeder::class,
+            EstadoSeeder::class,
+            CidadeSeeder::class,
             PostagemSeeder::class,
-           
+
             ]);
-        
+
     }
 }
