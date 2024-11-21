@@ -12,6 +12,37 @@ use App\Models\Cidade;
 
 class HoteisController extends Controller
 {
+    public function welcome()
+    {
+    $hoteis = Hotel::take(6)->get(); // Pega os 6 primeiros hotéis para exibição
+    $estados = Estado::all();
+    // dd($hoteis);
+    return view('welcome', compact('hoteis','estados'));
+    }
+
+    public function buscar(Request $request)
+    {
+        $estadoId = $request->input('estado_id');
+        $cidadeId = $request->input('cidade_id');
+
+        // Query base para buscar hotéis
+        $query = Hotel::query();
+
+        // Adiciona filtros, se fornecidos
+        if ($estadoId) {
+            $query->where('estado_id', $estadoId);
+        }
+        if ($cidadeId) {
+            $query->where('cidade_id', $cidadeId);
+        }
+
+        // Obtem os resultados filtrados
+        $hoteis = $query->get();
+
+        // Retorna a view com os resultados
+        return view('hoteis.hoteis_resultado', compact('hoteis'));
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -45,6 +76,8 @@ class HoteisController extends Controller
             'hotel' => 'required|min:5',
             'estado_id' => 'required',
             'cidade_id' => 'required',
+            'descricao',
+            'valor_diaria' => 'required',
             'quartos' => 'required|min:1',
 
         ]);
@@ -54,6 +87,8 @@ class HoteisController extends Controller
         $hoteis->cidade_id = $request->cidade_id;
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
+        $hoteis->descricao = $request->descricao;
+        $hoteis->valor_diaria = $request->valor_diaria;
 
         //tranformando as imagens em base64
         $totalImages = count($request->images);

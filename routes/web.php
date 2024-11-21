@@ -9,9 +9,14 @@ use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\PostagemController;
 
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
+Route::get('/', [HoteisController::class, 'welcome'])->name('home');
+Route::get('/buscars', [HoteisController::class, 'buscar'])->name('buscar');
+Route::get('/hotel/{id}', [HoteisController::class, 'show'])->name('hotel.show');
+
 
 Auth::routes();
 

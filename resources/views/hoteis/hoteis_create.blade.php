@@ -1,4 +1,3 @@
-
 @extends('adminlte::page')
 
 @section('content')
@@ -7,16 +6,16 @@
     <link href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-  </head>
+</head>
 
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
 
             <!--Forms do create-->
-            <form method = 'POST' action="{{ URl('/hoteis') }}"  enctype="multipart/form-data">
+            <form method="POST" action="{{ url('/hoteis') }}" enctype="multipart/form-data">
                 @csrf
-            <!--Alert para requisição não cumprida da categoriaController-->
+                <!--Alert para requisição não cumprida da categoriaController-->
                 @if ($errors->any())
                 <div class="alert alert-danger">
                     <ul>
@@ -25,15 +24,12 @@
                         @endforeach
                     </ul>
                 </div>
-            @endif
-            
+                @endif
+
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Estado</label>
-
-                    <!-- Parte na qual estava dando erro no select = class="selectpicker" data-show-subtext="true" data-live-search="true" -->
-
-                    <select id="estado" name='estado_id'>
-                    <option value="">Selecione um Estado</option>
+                    <label for="estado">Estado</label>
+                    <select id="estado" name="estado_id">
+                        <option value="">Selecione um Estado</option>
                         @foreach ($estados as $value)
                             <option value="{{ $value->id }}">{{ $value->nome }}</option>
                         @endforeach
@@ -46,13 +42,25 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Hotel</label>
-                    <input type="text" name="hotel" class="form-control"  placeholder="Digite o nome do hotel">
+                    <label for="hotel">Hotel</label>
+                    <input type="text" name="hotel" class="form-control" placeholder="Digite o nome do hotel">
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1">Quantidade de quartos</label>
-                    <input type="number" name="quartos" class="form-control"  placeholder="Digite a quantidade de quartos">
+                    <label for="quartos">Quantidade de quartos</label>
+                    <input type="number" name="quartos" class="form-control" placeholder="Digite a quantidade de quartos">
+                </div>
+
+                <!-- Novo campo: Descrição -->
+                <div class="form-group">
+                    <label for="descricao">Descrição</label>
+                    <textarea name="descricao" class="form-control" rows="4" placeholder="Digite a descrição do hotel"></textarea>
+                </div>
+
+                <!-- Novo campo: Valor da diária -->
+                <div class="form-group">
+                    <label for="valor_diaria">Valor da diária</label>
+                    <input type="number" name="valor_diaria" class="form-control" step="0.01" placeholder="Digite o valor da diária">
                 </div>
 
                 <label for="image" class="form-label">Insira a imagem:</label>
@@ -62,49 +70,42 @@
             </form>
 
             <script>
-        // Evento de mudança no select de Estado
-        $('#estado').on('change', function() {
-            var estadoId = $(this).val(); // Pega o valor do estado selecionado
+                // Evento de mudança no select de Estado
+                $('#estado').on('change', function() {
+                    var estadoId = $(this).val(); // Pega o valor do estado selecionado
 
-            // Limpa o select de cidade
-            $('#cidade').html('<option value="">Selecione uma Cidade</option>');
+                    // Limpa o select de cidade
+                    $('#cidade').html('<option value="">Selecione uma Cidade</option>');
 
-            // Se um estado foi selecionado, realiza a requisição AJAX
-            if (estadoId) {
-                $.ajax({
-                    url: '{{ url('localidades/cidades') }}/' + estadoId, // URL para obter as cidades
-                    type: 'GET',
-                    success: function(data) {
-                        // Preenche o select de cidades com as cidades retornadas
-                        if (data.length > 0) {
-                            data.forEach(function(cidade) {
-                                $('#cidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
-                            });
-                        } else {
-                            $('#cidade').html('<option value="">Nenhuma cidade encontrada</option>');
-                        }
-                    },
-                    error: function() {
-                        alert('Erro ao carregar as cidades.');
+                    // Se um estado foi selecionado, realiza a requisição AJAX
+                    if (estadoId) {
+                        $.ajax({
+                            url: '{{ url('localidades/cidades') }}/' + estadoId, // URL para obter as cidades
+                            type: 'GET',
+                            success: function(data) {
+                                // Preenche o select de cidades com as cidades retornadas
+                                if (data.length > 0) {
+                                    data.forEach(function(cidade) {
+                                        $('#cidade').append('<option value="' + cidade.id + '">' + cidade.nome + '</option>');
+                                    });
+                                } else {
+                                    $('#cidade').html('<option value="">Nenhuma cidade encontrada</option>');
+                                }
+                            },
+                            error: function() {
+                                alert('Erro ao carregar as cidades.');
+                            }
+                        });
                     }
                 });
-            }
-        });
-    </script>
+            </script>
 
         </div>
     </div>
 </div>
 
-
-
-
-
-
-
-    
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/js/bootstrap-select.min.js"></script>
 
 @endsection

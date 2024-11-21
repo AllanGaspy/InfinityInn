@@ -5,7 +5,7 @@
     <ul class="list-group">
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Hotel:
-            <span class=""><p>{{ $hoteis->id }}</p></span>
+            <span class=""><p>{{ $hoteis->hotel }}</p></span>
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Estado:
@@ -21,7 +21,11 @@
         </li>
         <li class="list-group-item d-flex justify-content-between align-items-center">
             Valor da diária:
-            <span class=""></span>
+            <span class="">{{$hoteis->valor_diaria}}</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            Descrição:
+            <span class="">{{$hoteis->descricao}}</span>
         </li>
     </ul>
 
