@@ -14,8 +14,9 @@ use App\Http\Controllers\PostagemController;
 // });
 
 Route::get('/', [HoteisController::class, 'welcome'])->name('home');
-Route::get('/buscars', [HoteisController::class, 'buscar'])->name('buscar');
-Route::get('/hotel/{id}', [HoteisController::class, 'show'])->name('hotel.show');
+Route::get('/buscar', [HoteisController::class, 'buscar'])->name('buscar');
+Route::get('/hotel/{id}', [HoteisController::class, 'preReserva'])->name('hoteis_pre_reserva');
+
 
 
 Auth::routes();

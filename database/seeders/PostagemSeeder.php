@@ -16,13 +16,13 @@ class PostagemSeeder extends Seeder
         DB::table('postagens')->insert([
             'hotel' => 'Plaza Barra',
             'estado_id' => 19,
-            'cidade_id' => 3591,
+            'cidade_id' => 91,
             'quartos' => 43,
         ]);
         DB::table('postagens')->insert([
             'hotel' => 'Porto Mar de Búzios',
             'estado_id' => 19,
-            'cidade_id' => 3592,
+            'cidade_id' => 92,
             'quartos' => 18,
         ]);
     }

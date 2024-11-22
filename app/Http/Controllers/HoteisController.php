@@ -43,6 +43,16 @@ class HoteisController extends Controller
         return view('hoteis.hoteis_resultado', compact('hoteis'));
     }
 
+    public function preReserva(string $id)
+    {
+         //Retorna a visuzalição (view) do elemento rote show
+       $hoteis = Hotel::find($id);
+       return view('hoteis.hoteis_pre_reserva', compact('hoteis'));
+
+
+
+    }
+
     /**
      * Display a listing of the resource.
      */

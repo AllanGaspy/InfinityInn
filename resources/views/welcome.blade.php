@@ -16,7 +16,7 @@
 
     <div class="container my-5">
         <!-- Seção de Busca -->
-        <form action="{{ route('buscar') }}" method="GET" class="mb-4">
+        <form action="{{ url('/buscar') }}" method="GET" class="mb-4">
             <div class="row">
                 <!-- Estado -->
                 <div class="col-md-2 mb-3">
@@ -60,10 +60,10 @@
         <h2 class="mb-4 text-center">Hotéis em Destaque</h2>
         <div class="row">
             @foreach ($hoteis as $hoteis)
-                <div class="col-md-4 mb-4">
-                    <div class="card">
+                <div class="col-12 mb-4">
+                    <div class="card flex-row">
                         @if($hoteis->images)
-                            <img src="data:image/png;base64,{{ $hoteis->images[0] }}" class="card-img-top" alt="Imagem do Hotel">
+                            <img src="data:image/png;base64,{{ $hoteis->images[0] }}" class="card-img-left" style="width: 200px;" alt="Imagem do Hotel">
                         @else
                             <p>Sem imagem</p>
                         @endif
@@ -71,12 +71,13 @@
                             <h5 class="card-title">{{ $hoteis->hotel }}</h5>
                             <p class="card-text">{{ Str::limit($hoteis->descricao, 100) }}</p>
                             <p class="card-text"><strong>R$ {{ number_format($hoteis->valor_diaria, 2, ',', '.') }}</strong> por noite</p>
-                            <a href="{{ route('hotel.show', $hoteis->id) }}" class="btn btn-primary">Ver Mais</a>
+                            <a href="{{ route('hoteis_pre_reserva', $hoteis->id) }}" class="btn btn-primary">Ver Mais</a>
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+
     </div>
 
     <footer class="bg-dark text-white text-center py-3">
