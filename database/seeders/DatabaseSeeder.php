@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             EstadoSeeder::class,
             CidadeSeeder::class,
             PostagemSeeder::class,
+            ComentarioSeeder::class,
 
             ]);
 

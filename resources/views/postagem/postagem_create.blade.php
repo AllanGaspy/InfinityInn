@@ -54,6 +54,11 @@
                     <label for="exampleInputEmail1">Quantidade de quartos</label>
                     <input type="number" name="quartos" class="form-control"  placeholder="Digite a quantidade de quartos">
                 </div>
+                        <!-- comentarios !! -->
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Comentarios</label>
+                    <input type="text" name="conteudo" class="form-control"  placeholder="Digite algum comentario">
+                </div>
 
                 <label for="image" class="form-label">Insira a imagem:</label>
                 <br><input type="file" name="images[]" multiple><br>

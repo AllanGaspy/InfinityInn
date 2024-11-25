@@ -8,6 +8,7 @@ use App\Models\Hotel;
 use App\Models\Estado;
 use App\Models\Cidade;
 use App\Models\Postagem;
+use App\Models\Comentario;
 
 
 
@@ -31,9 +32,10 @@ class PostagemController extends Controller
     {
         //view do create
         $postagens = Postagem::all();
+        $comentarios = Comentario::all();
         $estados = Estado::all();
         $cidades = Cidade::all();
-        return view('postagem.postagem_create', compact('estados', 'cidades','postagens'));
+        return view('postagem.postagem_create', compact('estados', 'cidades','postagens','comentarios'));
 
     }
 
@@ -56,6 +58,10 @@ class PostagemController extends Controller
         $postagens->cidade_id = $request->cidade_id;
         $postagens->hotel = $request->hotel;
         $postagens->quartos = $request->quartos;
+       
+       
+       
+        
 
         //tranformando as imagens em base64
         $totalImages = count($request->images);
@@ -69,6 +75,7 @@ class PostagemController extends Controller
 
         $postagens->images = $jsonImages;
         $postagens->save();
+        
 
         return redirect()->route('postagem.index')->with('mensagem', 'Postagem feita com sucesso');
 
@@ -79,9 +86,10 @@ class PostagemController extends Controller
      */
     public function show(string $id)
     {
-         //Retorna a visuzalição (view) do elemento rote show
+         //Retorna a visuzalição (view) do elemento rote show 
        $postagens = Postagem::find($id);
-       return view('postagem.postagem_show', compact('postagens'));
+       $comentarios = Comentario::all();
+       return view('postagem.postagem_show', compact('postagens','comentarios','comentarios'));
 
 
 

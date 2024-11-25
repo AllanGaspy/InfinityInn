@@ -51,7 +51,7 @@
                 </div>
 
                 <div class="col-md-2 mb-3">
-                    <button type="submit" class="btn btn-primary w-100">Buscar</button>
+                    <a href="postagem.blade.php"><button type="submit" class="btn btn-primary w-100">Buscar</button></a>
                 </div>
             </div>
         </form>

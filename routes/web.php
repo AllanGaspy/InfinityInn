@@ -48,6 +48,9 @@ Route::middleware(['auth'])->group(function (){
     Route::get('/localidades/cidades/{estadoId}', [LocationController::class, 'getCidades'])->name('localidades.cidades');
 
 
+    //Rota pra buscar comentarios
+   Route::get('/postagem', [PostagemController::class, 'comentarios'])->name('comentarios');
+
 
     //--------- Postagens-----------
     Route::get('/postagem', [PostagemController::class, 'index'])->name('postagem.index');
