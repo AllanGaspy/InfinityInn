@@ -16,8 +16,8 @@ return new class extends Migration
             $table->integer('estado_id');
             $table->integer('cidade_id');
             $table->string('hotel');
-            $table->text('descricao')->nullable(); // Campo de descrição
-            $table->decimal('valor_diaria', 8, 2)->nullable(); // Campo de valor da diária
+            $table->text('descricao')->nullable();
+            $table->decimal('valor_diaria', 8, 2)->nullable();
             $table->integer('quartos');
             $table->json('images')->nullable();
             $table->timestamps();

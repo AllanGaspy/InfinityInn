@@ -148,18 +148,23 @@ class HoteisController extends Controller
     public function update(Request $request, string $id)
     {
 
-            $validated = $request->validate([
+        $validated = $request->validate([
             'hotel' => 'required|min:5',
             'estado_id' => 'required',
             'cidade_id' => 'required',
             'quartos' => 'required|min:1',
+            'descricao' => 'nullable|string',
+            'valor_diaria' => 'required|numeric',
         ]);
 
+        // Encontrar o hotel que será atualizado
         $hoteis = Hotel::find($id);
         $hoteis->estado_id = $request->estado_id;
         $hoteis->cidade_id = $request->cidade_id;
         $hoteis->hotel = $request->hotel;
         $hoteis->quartos = $request->quartos;
+        $hoteis->descricao = $request->descricao;
+        $hoteis->valor_diaria = $request->valor_diaria;
 
         // Obter imagens existentes (se houver)
         $currentImages = $hoteis->images ?? [];

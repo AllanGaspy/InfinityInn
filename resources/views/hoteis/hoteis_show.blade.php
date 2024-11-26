@@ -30,18 +30,22 @@
     </ul>
 
     <div class="row row-cols-1 row-cols-md-3 g-3">
-        @foreach ($hoteis->images as $value)
-            <div class="col">
-                <div class="card">
-                    <img
-                        src="data:image/png;base64,{{ $value }}"
-                        class="card-img-top img-fluid"
-                        alt="Hotel Image"
-                        style="width: 100%; height: 200px; object-fit: cover;"
-                    />
+        @if (!empty($hoteis->images) && is_array($hoteis->images))
+            @foreach ($hoteis->images as $value)
+                <div class="col">
+                    <div class="card">
+                        <img
+                            src="data:image/png;base64,{{ $value }}"
+                            class="card-img-top img-fluid"
+                            alt="Hotel Image"
+                            style="width: 100%; height: 200px; object-fit: cover;"
+                        />
+                    </div>
                 </div>
-            </div>
-        @endforeach
+            @endforeach
+        @else
+            <p class="text-muted">Nenhuma imagem disponível para este hotel.</p>
+        @endif
     </div>
 
 

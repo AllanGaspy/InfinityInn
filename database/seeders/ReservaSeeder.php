@@ -18,6 +18,7 @@ class ReservaSeeder extends Seeder
             'estado_id' => 19,
             'cidade_id' => 91,
             'hotel' => 'Plaza Barra',
+            'hotel_id' => 2,
             'quartos' => 43,
             //adicionar cpf rg ?
         ]);

@@ -16,9 +16,15 @@ return new class extends Migration
             $table->string('nome');
             $table->integer('estado_id');
             $table->integer('cidade_id');
-            $table->string('hotel');
+            $table->string('hotel')->nullable(); //nullable somente para teste, retirar depois
+            $table->integer('hotel_id');
             $table->integer('quartos');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('set null');
+            $table->date('check_in')->nullable();
+            $table->date('check_out')->nullable();
             $table->timestamps();
+            $table->integer('guests')->default(1);
         });
     }
 
